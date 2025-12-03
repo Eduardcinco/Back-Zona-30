@@ -83,7 +83,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", policy =>
     {
         var envOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
-        string[] origins = new[] { \"http://localhost:4200\", \"https://front-zona-30.onrender.com\" };
+        string[] origins = new[] { "http://localhost:4200", "https://front-zona-30.onrender.com" };
         if (!string.IsNullOrWhiteSpace(envOrigins))
         {
             origins = envOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -177,8 +177,7 @@ app.Use(async (context, next) =>
         // En caso de error silencioso, continuar
     }
 
-            // Default allowed origins: local dev and deployed front
-            string[] origins = new[] { "http://localhost:4200", "https://front-zona-30.onrender.com" };
+    await next();
 });
 
 app.MapControllers();
