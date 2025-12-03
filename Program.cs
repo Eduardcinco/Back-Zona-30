@@ -141,7 +141,7 @@ app.UseAuthentication();
 app.UseMiddleware<VentifyAPI.Middleware.TenantMiddleware>();
 app.UseAuthorization();
 
-// Servir archivos estáticos (wwwroot) para foto de perfil y otros assets
+// Servir archivos estï¿½ticos (wwwroot) para foto de perfil y otros assets
 app.UseStaticFiles();
 
 // Middleware para validar tokenVersion en cada request autenticado
@@ -167,7 +167,7 @@ app.Use(async (context, next) =>
             if (dbUser != null && dbUser.TokenVersion != tokenVer)
             {
                 context.Response.StatusCode = 401;
-                await context.Response.WriteAsJsonAsync(new { message = "Sesión inválida. Por favor inicie sesión nuevamente." });
+                await context.Response.WriteAsJsonAsync(new { message = "Sesiï¿½n invï¿½lida. Por favor inicie sesiï¿½n nuevamente." });
                 return;
             }
         }
@@ -177,7 +177,8 @@ app.Use(async (context, next) =>
         // En caso de error silencioso, continuar
     }
 
-    await next();
+            // Default allowed origins: local dev and deployed front
+            string[] origins = new[] { "http://localhost:4200", "https://front-zona-30.onrender.com" };
 });
 
 app.MapControllers();
