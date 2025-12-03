@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using VentifyAPI.Data;
 using Microsoft.OpenApi.Models;
@@ -83,7 +83,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", policy =>
     {
         var envOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
-        string[] origins = new[] { "http://localhost:4200" };
+        string[] origins = new[] { \"http://localhost:4200\", \"https://front-zona-30.onrender.com\" };
         if (!string.IsNullOrWhiteSpace(envOrigins))
         {
             origins = envOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -141,7 +141,7 @@ app.UseAuthentication();
 app.UseMiddleware<VentifyAPI.Middleware.TenantMiddleware>();
 app.UseAuthorization();
 
-// Servir archivos estÃ¡ticos (wwwroot) para foto de perfil y otros assets
+// Servir archivos estáticos (wwwroot) para foto de perfil y otros assets
 app.UseStaticFiles();
 
 // Middleware para validar tokenVersion en cada request autenticado
@@ -167,7 +167,7 @@ app.Use(async (context, next) =>
             if (dbUser != null && dbUser.TokenVersion != tokenVer)
             {
                 context.Response.StatusCode = 401;
-                await context.Response.WriteAsJsonAsync(new { message = "SesiÃ³n invÃ¡lida. Por favor inicie sesiÃ³n nuevamente." });
+                await context.Response.WriteAsJsonAsync(new { message = "Sesión inválida. Por favor inicie sesión nuevamente." });
                 return;
             }
         }
@@ -183,3 +183,4 @@ app.Use(async (context, next) =>
 app.MapControllers();
 
 app.Run();
+
