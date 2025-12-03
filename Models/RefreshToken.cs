@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VentifyAPI.Models
 {
+    [Table("refresh_tokens")]
     public class RefreshToken
     {
         [Key]
